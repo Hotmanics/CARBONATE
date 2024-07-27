@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         dark: {
-          primary: "#212638",
+          primary: "#00000000",
           "primary-content": "#F9FBFF",
           secondary: "#323f61",
           "secondary-content": "#F9FBFF",
@@ -51,7 +51,7 @@ module.exports = {
           "neutral-content": "#385183",
           "base-100": "#385183",
           "base-200": "#2A3655",
-          "base-300": "#212638",
+          "base-300": "#00000000",
           "base-content": "#F9FBFF",
           info: "#385183",
           success: "#34EEB6",

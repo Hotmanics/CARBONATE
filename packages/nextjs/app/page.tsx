@@ -14,11 +14,11 @@ const Home: NextPage = () => {
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5">
           <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
+            <span className="block text-4xl font-bold">Mineral Water</span>
+            <span className="block text-2xl mb-2">Onchain</span>
           </h1>
           <div className="flex justify-center items-center space-x-2">
-            <p className="my-2 font-medium">Connected Address:</p>
+            <p className="my-2 font-medium">An EXPERIMENTAL Tokenized Real World Asset (RWA)</p>
             <Address address={connectedAddress} />
           </div>
           <p className="text-center text-lg">
