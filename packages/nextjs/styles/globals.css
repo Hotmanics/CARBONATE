@@ -2,6 +2,33 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@font-face {
+  font-family: "beerGlass";
+  src: url('../fonts/beerglass-font//Beerglass-3aa3.ttf');
+}
+
+.beerGlass {
+  font-family: "beerGlass";
+}
+
+@font-face {
+  font-family: "kanit";
+  src: url('../fonts/Kanit//Kanit-Regular.ttf');
+}
+
+.kanit {
+  font-family: "kanit";
+}
+
+@font-face {
+  font-family: "kanit-light";
+  src: url('../fonts/Kanit//Kanit-Light.ttf');
+}
+
+.kanit-light {
+  font-family: "kanit-light";
+}
+
 :root,
 [data-theme] {
   background: oklch(var(--b2));

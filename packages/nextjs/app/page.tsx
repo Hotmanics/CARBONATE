@@ -1,67 +1,42 @@
 "use client";
 
-import Link from "next/link";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
-
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
-          <h1 className="text-center">
-            <span className="block text-4xl font-bold">Mineral Water</span>
-            <span className="block text-2xl mb-2">Onchain</span>
-          </h1>
-          <div className="flex justify-center items-center space-x-2">
-            <p className="my-2 font-medium">An EXPERIMENTAL Tokenized Real World Asset (RWA)</p>
-            <Address address={connectedAddress} />
-          </div>
-          <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
-          </p>
-          <p className="text-center text-lg">
-            Edit your smart contract{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              YourContract.sol
-            </code>{" "}
-            in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
+        <div className="px-5 text-center lg:w-[512px]">
+          <p className="text-5xl lg:text-7xl beerGlass">Wild Water Bottle Cap Token</p>
+          <p className="text-2xl kanit">Civilization has ended? </p>
+          <p className="text-lg kanit">and</p>
+          <p className="text-2xl kanit">Your flimsy paper money is now worthless?</p>
+          <p className="text-3xl kanit">Stock up on Wild Water Bottle Cap tokens to be brought into the future!</p>
+        </div>
+
+        <div className="lg:w-[620px] mt-10 lg:mt-32">
+          <p className="text-4xl beerGlass text-center">What is it?</p>
+          <p className="text-xl kanit text-center">
+            {`A tokenized Real World Asset (RWA) where the supply of the token matches the actual number of bottle caps
+            that Jacob Homanics owns in the physical world.`}
           </p>
         </div>
 
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contracts
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
-            </div>
-          </div>
+        <div className="lg:w-[620px]">
+          <p className="text-4xl beerGlass text-center">How is it?</p>
+          <p className="text-xl kanit text-center">
+            {`Jacob loves his mineral water. Every Sunday he takes a a stroll down to the local supermarket to stock up on a 12ct pack of bottles. 
+              After poppin' the top off, throughtout the week, he stores the bottle caps for safekeeping instead of throwing them in the trash. 
+              "Who knows, maybe they'll be the currency of the future!" He thinks, as he plucks another bottle cap into the treasury.`}
+          </p>
+        </div>
+
+        <div className="lg:w-[620px]">
+          <p className="text-4xl beerGlass text-center">Why is it?</p>
+          <p className="text-xl kanit text-center">
+            {`This is a fun experiment that will help explore and discover what it means to be a Tokenized Real World
+            Asset. It is designed to test and break the boundaries and processes for bringing Real World Assets onchain.`}
+          </p>
         </div>
       </div>
     </>

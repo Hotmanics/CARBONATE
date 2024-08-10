@@ -19,7 +19,7 @@ contract WildMineralWater is ERC20, AccessControl {
         address[] memory minters,
         uint256 mintTimeThreshold,
         uint256 maxMintAmount
-    ) ERC20("Wild Mineral Water", "WMW") {
+    ) ERC20("Wild Water", "WMW") {
         for (uint256 i = 0; i < admins.length; i++) {
             grantRole(DEFAULT_ADMIN_ROLE, admins[i]);
         }
@@ -39,7 +39,7 @@ contract WildMineralWater is ERC20, AccessControl {
         if (amount > s_maxMintAmount) {
             revert WMW__MINTING_TOO_MANY_TOKENS();
         }
-    
+
         if (s_lastMintTimestamp + s_mintTimeThreshold < block.timestamp) {
             revert WMW__NOT_ENOUGH_TIME_PASSED_TO_MINT();
         }
