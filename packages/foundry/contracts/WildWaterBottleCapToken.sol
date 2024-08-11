@@ -10,7 +10,7 @@ contract WildWaterBottleCapToken is ERC20, AccessControl {
     constructor(
         address[] memory admins,
         address[] memory minters
-    ) ERC20("Wild Water Bottle Cap Token", "WWBCT") {
+    ) ERC20("Wild Water Bottle Cap Token", "WW") {
         for (uint256 i = 0; i < admins.length; i++) {
             grantRole(DEFAULT_ADMIN_ROLE, admins[i]);
         }
