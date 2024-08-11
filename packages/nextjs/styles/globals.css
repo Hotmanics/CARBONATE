@@ -29,6 +29,17 @@
   font-family: "kanit-light";
 }
 
+
+@font-face {
+  font-family: "loving-snow";
+  src: url('../fonts/Lora_M_PLUS_Rounded_1c/Lora/Lora-VariableFont_wght.ttf');
+}
+
+.loving-snow {
+  font-family: "loving-snow";
+}
+
+
 :root,
 [data-theme] {
   background: oklch(var(--b2));
