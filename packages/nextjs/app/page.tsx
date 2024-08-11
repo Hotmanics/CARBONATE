@@ -5,22 +5,25 @@ import type { NextPage } from "next";
 const Home: NextPage = () => {
   return (
     <>
-      <div className="flex items-center flex-col flex-grow pt-10 space-y-4">
-        <div className="px-5 text-center lg:w-[720px] bg-base-100 rounded-lg shadow-md shadow-secondary">
+      <div className="flex flex-col items-center flex-grow pt-10 space-y-4">
+        <div className="flex flex-col px-5 text-center lg:w-[720px] w-full bg-base-100 rounded-lg shadow-md shadow-secondary">
           <p className="text-4xl lg:text-7xl beerGlass">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass">A Tokenized Real World Asset</p>
         </div>
-        <div className="px-5 text-center lg:w-[512px] bg-base-100 rounded-lg shadow-md shadow-secondary">
-          <p className="text-xl lg:text-3xl kanit-light">Civilization has ended?</p>
-          <p className="lg:text-2xl kanit">and</p>
-          <p className="text-xl lg:text-3xl kanit-lght">Your flimsy paper money is now worthless?</p>
-          <p className="text-3xl lg:text-4xl kanit font-bold">
-            Stock up on Wild Water Bottle Cap tokens to be brought into the future!
-          </p>
+        <div className="flex items-center justify-center px-5 text-center w-full">
+          <div className="w-[680px] flex flex-col items-center">
+            <p className="text-xl lg:text-3xl kanit-light">Civilization has ended?</p>
+            <p className="lg:text-2xl kanit">and</p>
+            <p className="text-xl lg:text-3xl kanit-lght">Your flimsy paper money is now worthless?</p>
+            <p className="text-3xl lg:text-4xl kanit font-bold">
+              Stock up on Wild Water Bottle Cap tokens to be brought into the future!
+            </p>
+          </div>
         </div>
 
-        <div className="rounded-lg bg-base-100 rounded-lg shadow-md shadow-secondary">
+        <div className="flex flex-col items-center bg-base-100 w-full">
+          <p className="text-6xl beerGlass text-center">FAQ?</p>
           <div className="lg:w-[620px]">
             <p className="text-4xl beerGlass text-center">What is it?</p>
             <p className="text-xl kanit text-center">
@@ -34,7 +37,7 @@ const Home: NextPage = () => {
             <p className="text-xl kanit text-center">
               {`Jacob loves his mineral water. Every Sunday he takes a a stroll down to the local supermarket to stock up on a 12ct pack of bottles. 
               After poppin' the top off, throughtout the week, he stores the bottle caps for safekeeping instead of throwing them in the trash. 
-              "Who knows, maybe they'll be the currency of the future!" He thinks, as he plucks another bottle cap into the treasury.`}
+              "Who knows, maybe one day they'll be the currency of the future!" He thinks, as he plucks another bottle cap into the treasury.`}
             </p>
           </div>
 
