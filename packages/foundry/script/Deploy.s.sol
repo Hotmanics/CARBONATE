@@ -20,7 +20,7 @@ contract DeployScript is ScaffoldETHDeploy {
         address[] memory admins = new address[](1);
         admins[0] = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
         address[] memory minters = new address[](1);
-        minters[1] = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
+        minters[0] = 0xc689c800a7121b186208ea3b182fAb2671B337E7;
 
         vm.startBroadcast(deployerPrivateKey);
         WildWaterBottleCapToken yourContract = new WildWaterBottleCapToken(
