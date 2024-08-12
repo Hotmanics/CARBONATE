@@ -21,7 +21,7 @@ const ProofOfReserve: NextPage = () => {
     return (
       <div key={index} className="flex flex-col items-center bg-secondary rounded-lg p-10 space-y-1 m-10">
         <p className="loving-snow text-4xl m-1">Mint #{index}</p>
-        {/*eslint-disable-next-line no-use-before-define */}
+        {/* eslint-disable-next-line */}
         <img src={proofOfReserveArray[index].src} className="w-96 h-96" />
         <Link
           href={`https://basescan.org/tx/${log?.transactionHash}`}
@@ -57,7 +57,7 @@ const ProofOfReserve: NextPage = () => {
       setMintLogs(logs);
     }
     get();
-    /*eslint-disable-next-line no-use-before-define */
+    /* eslint-disable-next-line */
   }, [contract?.address, publicClient?.chain?.id]);
 
   return (
