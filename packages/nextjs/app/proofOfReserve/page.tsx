@@ -1,10 +1,31 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import type { NextPage } from "next";
+import { parseAbiItem } from "viem";
+import { usePublicClient } from "wagmi";
+import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import proofOfReserve0 from "~~/public/proof-of-reserve-0.png";
 
 const ProofOfReserve: NextPage = () => {
+  const { data: contract } = useScaffoldContract({ contractName: "WildWaterBottleCapToken" });
+  const publicClient = usePublicClient();
+
+  useEffect(() => {
+    async function get() {
+      if (!publicClient) return;
+
+      const filter = await publicClient.createEventFilter({
+        address: contract?.address,
+        event: parseAbiItem("event Transfer(address indexed, address indexed, uint256)"),
+      });
+      const logs = await publicClient.getFilterLogs({ filter });
+      console.log(logs);
+    }
+    get();
+  }, [publicClient]);
+
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10 bg-gradient-to-t from-base-100 to-base-200">

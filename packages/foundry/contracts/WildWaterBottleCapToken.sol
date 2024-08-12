@@ -20,10 +20,13 @@ contract WildWaterBottleCapToken is ERC20, AccessControl {
         }
     }
 
+    event Minted(address indexed target, uint256 amount);
+
     function mint(
         address target,
         uint256 amount
     ) external onlyRole(MINTER_ROLE) {
+        emit Minted(target, amount);
         _mint(target, amount);
     }
 }

@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   8453: {
     WildWaterBottleCapToken: {
-      address: "0x0b771008a6a6b0ecdb7ae038ed1f1a9569bf9613",
+      address: "0x4169de2404a1484a50ab34fff631f4b5dba90428",
       abi: [
         {
           type: "constructor",
@@ -375,6 +375,25 @@ const deployedContracts = {
             },
             {
               name: "value",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Minted",
+          inputs: [
+            {
+              name: "target",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "amount",
               type: "uint256",
               indexed: false,
               internalType: "uint256",
