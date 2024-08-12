@@ -55,6 +55,13 @@ const Home: NextPage = () => {
             Asset. It is designed to test and break the boundaries and processes for bringing Real World Assets onchain.`}
               </p>
             </div>
+
+            <div className="lg:w-1/4 bg-base-300 rounded-lg shadow-md m-4 p-4">
+              <p className="text-3xl beerGlass text-center">How can you participate?</p>
+              <p className="text-xl loving-snow text-center">
+                {`You can send in your bottle cap tokens along with an associated address and when I receive the physical caps, then I will mint the tokens to your specified address!`}
+              </p>
+            </div>
           </div>
         </div>
       </div>
