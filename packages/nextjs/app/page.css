@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  .wrap {
+    overflow: hidden;
+  }
+  .hero {
+    aspect-ratio: 16 / 5;
+    background: url(https://picsum.photos/id/1016/2000/1200) no-repeat;
+    background-size: cover;
+    margin-bottom: -100px; /* overlap image*/
+  }
+  .wave {
+    height: 80px;
+    will-change: transform;
+    width: 400vw;
+    background: #3ea4f0;
+    --mask: radial-gradient(75.15px at 50% 101.5px, #000 99%, #0000 101%)
+        calc(50% - 70px) 0/140px 100%,
+      radial-gradient(75.15px at 50% -66.5px, #0000 99%, #000 101%) 50% 35px/140px
+        100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    animation: wave 25s linear infinite alternate;
+  }
+  @keyframes wave {
+    100% {
+      transform: translate3d(-300vw, 0, 0.1px);
+    }
+  }

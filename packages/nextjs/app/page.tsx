@@ -1,5 +1,6 @@
 "use client";
 
+import "./page.css";
 import type { NextPage } from "next";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
@@ -9,21 +10,26 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
-        <div className="flex flex-col px-5 text-center lg:w-[720px] rounded-lg">
+      <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
+        <div className="flex flex-col w-full px-5 text-center rounded-lg">
           <p className="text-4xl lg:text-7xl beerGlass m-1">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass m-1">A Tokenized Real World Asset</p>
         </div>
 
-        <div className="flex flex-col items-center text-center w-full px-5 bg-base-300 shadow-lg">
-          <p className="text-xl lg:text-4xl loving-snow m-1">Society has collapsed?</p>
-          <p className="lg:text-3xl loving-snow m-1">and</p>
-          <p className="text-xl lg:text-4xl loving-snow m-1">Your flimsy paper money is now worthless?</p>
-          <p className="text-3xl lg:text-5xl loving-snow font-bold lg:w-[680px]">Dive into the future!</p>
-          <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row bg-base-100 rounded-lg m-1 p-1">
-            <p className="my-2 font-medium">Contract Address:</p>
-            <Address address={contract?.address} />
+        <div>
+          <div className="wrap">
+            <div className="wave"></div>
+          </div>
+          <div className="flex flex-col items-center text-center w-full px-5 bg-base-300 shadow-lg ">
+            <p className="text-xl lg:text-4xl loving-snow m-1">Society has collapsed?</p>
+            <p className="lg:text-3xl loving-snow m-1">and</p>
+            <p className="text-xl lg:text-4xl loving-snow m-1">Your flimsy paper money is now worthless?</p>
+            <p className="text-3xl lg:text-5xl loving-snow font-bold lg:w-[680px]">Dive into the future!</p>
+            <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row bg-base-100 rounded-lg m-1 p-1">
+              <p className="my-2 font-medium">Contract Address:</p>
+              <Address address={contract?.address} />
+            </div>
           </div>
         </div>
 
