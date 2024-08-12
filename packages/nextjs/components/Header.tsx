@@ -26,7 +26,7 @@ export const menuLinks: HeaderMenuLink[] = [
   },
   {
     label: "Proof Of Reserve",
-    href: "/debug",
+    href: "/proofOfReserve",
     icon: <BanknotesIcon className="h-4 w-4" />,
   },
 ];
