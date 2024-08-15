@@ -2,8 +2,10 @@
 
 import "./page.css";
 import type { NextPage } from "next";
+import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
+import jake from "~~/public/jake.png";
 
 const Home: NextPage = () => {
   const { data: contract } = useScaffoldContract({ contractName: "WildWaterBottleCapToken" });
@@ -70,6 +72,15 @@ const Home: NextPage = () => {
                 {`You can send in your bottle cap tokens along with an associated address and when I receive the physical caps, then I will mint the tokens to your specified address!`}
               </p>
             </div>
+          </div>
+
+          <div className="flex flex-wrap text-center justify-center items-center">
+            <PfpCard
+              name="Jacob Homanics"
+              image={jake}
+              twitterUrl="https://www.twitter.com/JacobHomanics"
+              farcasterUrl="https://www.warpcast.com/jacobhomanics.eth"
+            />
           </div>
         </div>
       </div>
