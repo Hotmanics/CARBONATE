@@ -24,7 +24,9 @@ const Home: NextPage = () => {
           <div className="flex flex-col items-center text-center w-full px-5 bg-base-300 shadow-lg ">
             <p className="text-xl lg:text-4xl loving-snow m-1">Society has collapsed?</p>
             <p className="lg:text-3xl loving-snow m-1">and</p>
-            <p className="text-xl lg:text-4xl loving-snow m-1">Your flimsy paper money is now worthless?</p>
+            <p className="text-xl lg:text-4xl loving-snow m-1">
+              Your currency of the past is no longer useful in the present?
+            </p>
             <p className="text-3xl lg:text-5xl loving-snow font-bold lg:w-[680px]">Dive into the future!</p>
             <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row bg-base-100 rounded-lg m-1 p-1">
               <p className="my-2 font-medium">Contract Address:</p>
