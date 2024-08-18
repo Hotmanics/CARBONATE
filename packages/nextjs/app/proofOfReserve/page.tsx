@@ -8,6 +8,8 @@ import { usePublicClient } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import proofOfReserve0 from "~~/public/proof-of-reserve-0.png";
+import proofOfReserve1 from "~~/public/proof-of-reserve-1.png";
+import proofOfReserve2 from "~~/public/proof-of-reserve-2.png";
 
 // const proofOfReserveArray = [proofOfReserve0];
 
@@ -19,12 +21,16 @@ const newProofOfReserveArray = [
     ],
   },
   {
-    proof: proofOfReserve0,
+    proof: proofOfReserve1,
     transactions: [
       { hash: "0x69210aee3edc5df2f1a6ef7cf57097f14158d84596b5e8c81002a8a4214f1fdb", amount: "108000000000000000" },
       { hash: "0xf2f75fe2f0249eb7945d882e44099a9dab3b3b1361267b39b5a96b6b547b6b3d", amount: "107892000000000000000" },
       { hash: "0xb5d3b2e1627cc9b4b8c00f58ac30fc12da97dbbad2a06306c72b33bd77a129c5", amount: "108" },
     ],
+  },
+  {
+    proof: proofOfReserve2,
+    transactions: [{ hash: "TBD", amount: "1000000000000000000" }],
   },
 ];
 const ProofOfReserve: NextPage = () => {
@@ -68,7 +74,7 @@ const ProofOfReserve: NextPage = () => {
 
         return (
           <div key={index} className="flex flex-col items-center bg-secondary rounded-lg p-10 space-y-1 m-10">
-            <p className="loving-snow text-4xl m-1">Mint #{index}</p>
+            <p className="loving-snow text-4xl m-1">#{index}</p>
             {/* eslint-disable-next-line */}
             <img src={proof.proof.src} className="w-32 h-32 lg:w-96 lg:h-96" />
             {txComps}
