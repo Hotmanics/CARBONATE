@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import "./page.css";
 import type { NextPage } from "next";
 import {
@@ -9,6 +10,8 @@ import {
   CartesianGrid,
   XAxis,
 } from "recharts";
+import { formatUnits, parseAbiItem } from "viem";
+import { usePublicClient } from "wagmi";
 import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
 import {
@@ -22,29 +25,16 @@ import {
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import jake from "~~/public/jake.png";
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "mints",
     color: "hsl(var(--chart-1))",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-function BarChartExample() {
+function BarChartExample({ chartData }: any) {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+    <ChartContainer config={chartConfig} className="h-[200px] w-auto">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
         <XAxis
@@ -56,8 +46,8 @@ function BarChartExample() {
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+        <Bar dataKey="mints" fill="var(--color-desktop)" radius={4} />
+        {/* <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} /> */}
       </BarChart>
     </ChartContainer>
   );
@@ -66,11 +56,45 @@ function BarChartExample() {
 const Home: NextPage = () => {
   const { data: contract } = useScaffoldContract({ contractName: "WildWaterBottleCapToken" });
 
+  const publicClient = usePublicClient();
+
+  const [mintLogs, setMintLogs] = useState<any>([]);
+
+  let total = 0;
+
+  for (let i = 0; i < mintLogs.length; i++) {
+    total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+  }
+
+  const chartData = [{ month: "August", mints: total }];
+
+  console.log(total);
+
+  useEffect(() => {
+    async function get() {
+      if (!contract) return;
+      if (!publicClient) return;
+
+      const logs = await publicClient.getLogs({
+        address: contract?.address,
+        event: parseAbiItem("event Minted(address indexed, uint256)"),
+        fromBlock: BigInt(0),
+        toBlock: "latest",
+      });
+
+      setMintLogs(logs);
+    }
+    get();
+    /* eslint-disable-next-line */
+  }, [contract?.address, publicClient?.chain?.id]);
+
   return (
     <>
       <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
-        <div className="flex flex-col w-full px-5 text-center rounded-lg">
-          <BarChartExample />
+        <div className="flex flex-col w-full px-5  justify-center items-center text-center rounded-lg">
+          <div className="w-[200px] flex flex-col">
+            <BarChartExample chartData={chartData} />
+          </div>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass m-1">A Tokenized Real World Asset</p>
