@@ -64,11 +64,10 @@ const Home: NextPage = () => {
 
   for (let i = 0; i < mintLogs.length; i++) {
     total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+    console.log(mintLogs[i]?.args[1]);
   }
 
   const chartData = [{ month: "August", mints: total }];
-
-  console.log(total);
 
   useEffect(() => {
     async function get() {
@@ -82,6 +81,7 @@ const Home: NextPage = () => {
         toBlock: "latest",
       });
 
+      console.log(logs);
       setMintLogs(logs);
     }
     get();
