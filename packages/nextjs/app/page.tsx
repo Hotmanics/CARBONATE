@@ -2,10 +2,66 @@
 
 import "./page.css";
 import type { NextPage } from "next";
+import {
+  // Area, AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+} from "recharts";
 import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "~~/components/ui/chart";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import jake from "~~/public/jake.png";
+
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+];
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
+
+function BarChartExample() {
+  return (
+    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+      <BarChart accessibilityLayer data={chartData}>
+        <CartesianGrid vertical={false} />
+        <XAxis
+          dataKey="month"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          tickFormatter={value => value.slice(0, 3)}
+        />
+        <ChartTooltip content={<ChartTooltipContent />} />
+        <ChartLegend content={<ChartLegendContent />} />
+        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+      </BarChart>
+    </ChartContainer>
+  );
+}
 
 const Home: NextPage = () => {
   const { data: contract } = useScaffoldContract({ contractName: "WildWaterBottleCapToken" });
@@ -14,6 +70,7 @@ const Home: NextPage = () => {
     <>
       <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
         <div className="flex flex-col w-full px-5 text-center rounded-lg">
+          <BarChartExample />
           <p className="text-4xl lg:text-7xl beerGlass m-1">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass m-1">A Tokenized Real World Asset</p>
