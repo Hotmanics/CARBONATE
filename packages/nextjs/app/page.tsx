@@ -186,7 +186,9 @@ const Home: NextPage = () => {
         </div>
 
         <div className="w-[200px] flex flex-col w-full items-center justify-center">
-          <div className="flex flex-wrap">
+          <p className="text-xl m-4">Token Mint Transactions Per Month</p>
+
+          <div className="flex flex-wrap space-x-2">
             <button
               className="btn btn-sm btn-secondary"
               onClick={() => {
@@ -212,8 +214,9 @@ const Home: NextPage = () => {
               YTD
             </button>
           </div>
-          <BarChartExample chartData={selectedChartData} />
-          <p className="text-xl m-0">Mints Per Month Chart</p>
+          <div className="m-4">
+            <BarChartExample chartData={selectedChartData} />
+          </div>
         </div>
 
         <div className="flex flex-col items-center w-full">
