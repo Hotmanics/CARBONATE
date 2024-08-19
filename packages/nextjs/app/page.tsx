@@ -60,15 +60,6 @@ const Home: NextPage = () => {
 
   const [mintLogs, setMintLogs] = useState<any>([]);
 
-  let total = 0;
-
-  for (let i = 0; i < mintLogs.length; i++) {
-    total += Number(formatUnits(mintLogs[i]?.args[1], 18));
-    console.log(mintLogs[i]?.args[1]);
-  }
-
-  const chartData = [{ month: "August", mints: total }];
-
   useEffect(() => {
     async function get() {
       if (!contract) return;
@@ -88,13 +79,89 @@ const Home: NextPage = () => {
     /* eslint-disable-next-line */
   }, [contract?.address, publicClient?.chain?.id]);
 
+  useEffect(() => {
+    let total = 0;
+
+    for (let i = 0; i < mintLogs.length; i++) {
+      total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+      console.log(mintLogs[i]?.args[1]);
+    }
+
+    const chartData3Month = [
+      { month: "June", mints: 0 },
+      { month: "July", mints: 0 },
+      { month: "August", mints: total },
+    ];
+
+    setSelectedChartData(chartData3Month);
+  }, [mintLogs]);
+
+  const [selectedChartData, setSelectedChartData] = useState<any>();
+
+  async function setChartData(months: number) {
+    if (months === 3) {
+      let total = 0;
+
+      for (let i = 0; i < mintLogs.length; i++) {
+        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+        console.log(mintLogs[i]?.args[1]);
+      }
+
+      const chartData3Month = [
+        { month: "June", mints: 0 },
+        { month: "July", mints: 0 },
+        { month: "August", mints: total },
+      ];
+
+      setSelectedChartData(chartData3Month);
+    } else if (months === 6) {
+      let total = 0;
+
+      for (let i = 0; i < mintLogs.length; i++) {
+        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+        console.log(mintLogs[i]?.args[1]);
+      }
+
+      const chartData6Month = [
+        { month: "March", mints: 0 },
+        { month: "April", mints: 0 },
+        { month: "May", mints: 0 },
+        { month: "June", mints: 0 },
+        { month: "July", mints: 0 },
+        { month: "August", mints: total },
+      ];
+
+      setSelectedChartData(chartData6Month);
+    } else if (months === 12) {
+      let total = 0;
+
+      for (let i = 0; i < mintLogs.length; i++) {
+        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
+        console.log(mintLogs[i]?.args[1]);
+      }
+
+      const chartData12Month = [
+        { month: "September", mints: 0 },
+        { month: "October", mints: 0 },
+        { month: "November", mints: 0 },
+        { month: "December", mints: 0 },
+        { month: "January", mints: 0 },
+        { month: "February", mints: 0 },
+        { month: "March", mints: 0 },
+        { month: "April", mints: 0 },
+        { month: "May", mints: 0 },
+        { month: "June", mints: 0 },
+        { month: "July", mints: 0 },
+        { month: "August", mints: total },
+      ];
+
+      setSelectedChartData(chartData12Month);
+    }
+  }
   return (
     <>
       <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
         <div className="flex flex-col w-full px-5  justify-center items-center text-center rounded-lg">
-          <div className="w-[200px] flex flex-col">
-            <BarChartExample chartData={chartData} />
-          </div>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass m-1">A Tokenized Real World Asset</p>
@@ -116,6 +183,37 @@ const Home: NextPage = () => {
               <Address address={contract?.address} />
             </div>
           </div>
+        </div>
+
+        <div className="w-[200px] flex flex-col w-full items-center justify-center">
+          <div className="flex flex-wrap">
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={() => {
+                setChartData(3);
+              }}
+            >
+              3 month
+            </button>
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={() => {
+                setChartData(6);
+              }}
+            >
+              6 month
+            </button>
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={() => {
+                setChartData(12);
+              }}
+            >
+              12 month
+            </button>
+          </div>
+          <BarChartExample chartData={selectedChartData} />
+          <p className="text-xl m-0">Mints Per Month Chart</p>
         </div>
 
         <div className="flex flex-col items-center w-full">
