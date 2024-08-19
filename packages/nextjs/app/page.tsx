@@ -47,7 +47,7 @@ function BarChartExample({ chartData }: any) {
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
         <Bar dataKey="Tokens Minted: " fill="var(--color-desktop)" radius={4} />
-        {/* <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} /> */}
+        <Bar dataKey="Transactions: " fill="var(--color-mobile)" radius={4} />
       </BarChart>
     </ChartContainer>
   );
@@ -88,9 +88,9 @@ const Home: NextPage = () => {
     }
 
     const chartData3Month = [
-      { month: "June", "Tokens Minted: ": 0 },
-      { month: "July", "Tokens Minted: ": 0 },
-      { month: "August", "Tokens Minted: ": total },
+      { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
+      { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
+      { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
     ];
 
     setSelectedChartData(chartData3Month);
@@ -108,9 +108,9 @@ const Home: NextPage = () => {
       }
 
       const chartData3Month = [
-        { month: "June", "Tokens Minted: ": 0 },
-        { month: "July", "Tokens Minted: ": 0 },
-        { month: "August", "Tokens Minted: ": total },
+        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
       ];
 
       setSelectedChartData(chartData3Month);
@@ -123,12 +123,12 @@ const Home: NextPage = () => {
       }
 
       const chartData6Month = [
-        { month: "March", "Tokens Minted: ": 0 },
-        { month: "April", "Tokens Minted: ": 0 },
-        { month: "May", "Tokens Minted: ": 0 },
-        { month: "June", "Tokens Minted: ": 0 },
-        { month: "July", "Tokens Minted: ": 0 },
-        { month: "August", "Tokens Minted: ": total },
+        { month: "March", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "April", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "May", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
       ];
 
       setSelectedChartData(chartData6Month);
@@ -141,18 +141,18 @@ const Home: NextPage = () => {
       }
 
       const chartData12Month = [
-        { month: "September", "Tokens Minted: ": 0 },
-        { month: "October", "Tokens Minted: ": 0 },
-        { month: "November", "Tokens Minted: ": 0 },
-        { month: "December", "Tokens Minted: ": 0 },
-        { month: "January", "Tokens Minted: ": 0 },
-        { month: "February", "Tokens Minted: ": 0 },
-        { month: "March", "Tokens Minted: ": 0 },
-        { month: "April", "Tokens Minted: ": 0 },
-        { month: "May", "Tokens Minted: ": 0 },
-        { month: "June", "Tokens Minted: ": 0 },
-        { month: "July", "Tokens Minted: ": 0 },
-        { month: "August", "Tokens Minted: ": total },
+        { month: "September", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "October", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "November", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "December", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "January", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "February", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "March", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "April", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "May", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
+        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
       ];
 
       setSelectedChartData(chartData12Month);
