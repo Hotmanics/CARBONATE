@@ -27,7 +27,7 @@ import jake from "~~/public/jake.png";
 
 const chartConfig = {
   desktop: {
-    label: "mints",
+    label: "Tokens Minted",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
@@ -46,7 +46,7 @@ function BarChartExample({ chartData }: any) {
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="mints" fill="var(--color-desktop)" radius={4} />
+        <Bar dataKey="Tokens Minted: " fill="var(--color-desktop)" radius={4} />
         {/* <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} /> */}
       </BarChart>
     </ChartContainer>
@@ -88,9 +88,9 @@ const Home: NextPage = () => {
     }
 
     const chartData3Month = [
-      { month: "June", mints: 0 },
-      { month: "July", mints: 0 },
-      { month: "August", mints: total },
+      { month: "June", "Tokens Minted: ": 0 },
+      { month: "July", "Tokens Minted: ": 0 },
+      { month: "August", "Tokens Minted: ": total },
     ];
 
     setSelectedChartData(chartData3Month);
@@ -108,9 +108,9 @@ const Home: NextPage = () => {
       }
 
       const chartData3Month = [
-        { month: "June", mints: 0 },
-        { month: "July", mints: 0 },
-        { month: "August", mints: total },
+        { month: "June", "Tokens Minted: ": 0 },
+        { month: "July", "Tokens Minted: ": 0 },
+        { month: "August", "Tokens Minted: ": total },
       ];
 
       setSelectedChartData(chartData3Month);
@@ -123,12 +123,12 @@ const Home: NextPage = () => {
       }
 
       const chartData6Month = [
-        { month: "March", mints: 0 },
-        { month: "April", mints: 0 },
-        { month: "May", mints: 0 },
-        { month: "June", mints: 0 },
-        { month: "July", mints: 0 },
-        { month: "August", mints: total },
+        { month: "March", "Tokens Minted: ": 0 },
+        { month: "April", "Tokens Minted: ": 0 },
+        { month: "May", "Tokens Minted: ": 0 },
+        { month: "June", "Tokens Minted: ": 0 },
+        { month: "July", "Tokens Minted: ": 0 },
+        { month: "August", "Tokens Minted: ": total },
       ];
 
       setSelectedChartData(chartData6Month);
@@ -141,18 +141,18 @@ const Home: NextPage = () => {
       }
 
       const chartData12Month = [
-        { month: "September", mints: 0 },
-        { month: "October", mints: 0 },
-        { month: "November", mints: 0 },
-        { month: "December", mints: 0 },
-        { month: "January", mints: 0 },
-        { month: "February", mints: 0 },
-        { month: "March", mints: 0 },
-        { month: "April", mints: 0 },
-        { month: "May", mints: 0 },
-        { month: "June", mints: 0 },
-        { month: "July", mints: 0 },
-        { month: "August", mints: total },
+        { month: "September", "Tokens Minted: ": 0 },
+        { month: "October", "Tokens Minted: ": 0 },
+        { month: "November", "Tokens Minted: ": 0 },
+        { month: "December", "Tokens Minted: ": 0 },
+        { month: "January", "Tokens Minted: ": 0 },
+        { month: "February", "Tokens Minted: ": 0 },
+        { month: "March", "Tokens Minted: ": 0 },
+        { month: "April", "Tokens Minted: ": 0 },
+        { month: "May", "Tokens Minted: ": 0 },
+        { month: "June", "Tokens Minted: ": 0 },
+        { month: "July", "Tokens Minted: ": 0 },
+        { month: "August", "Tokens Minted: ": total },
       ];
 
       setSelectedChartData(chartData12Month);
@@ -209,7 +209,7 @@ const Home: NextPage = () => {
                 setChartData(12);
               }}
             >
-              12 month
+              YTD
             </button>
           </div>
           <BarChartExample chartData={selectedChartData} />
