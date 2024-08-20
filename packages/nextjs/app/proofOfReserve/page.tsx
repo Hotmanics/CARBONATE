@@ -30,7 +30,9 @@ const newProofOfReserveArray = [
   },
   {
     proof: proofOfReserve2,
-    transactions: [{ hash: "TBD", amount: "1000000000000000000" }],
+    transactions: [
+      { hash: "0xf8ce2aa384713287f53cbd193a63aa660cf4725ab28d88061a2ab333ea29fc7a", amount: "1000000000000000000" },
+    ],
   },
 ];
 const ProofOfReserve: NextPage = () => {
@@ -51,32 +53,32 @@ const ProofOfReserve: NextPage = () => {
         const txComps = [];
         for (let i = 0; i < proof.transactions.length; i++) {
           txComps.push(
-            <div key={`${index}-${i}-txComps`} className="flex flex-col items-center bg-base-100">
+            <div key={`${index}-${i}-txComps`} className="flex flex-col items-center bg-base-100 rounded-lg">
               <Link
                 href={`https://basescan.org/tx/${proof.transactions[i].hash}`}
                 target="#"
-                className="font-medium hover:underline rounded-lg p-1 loving-snow break-all"
+                className="font-medium hover:underline rounded-lg p-1 loving-snow break-all text-xs"
               >
                 {proof.transactions[i].hash}
               </Link>
               <div className="flex flex-col text-center">
-                <p className="loving-snow m-1 text-2xl">Recipient</p>
+                <p className="loving-snow m-1 text-lg">Recipient</p>
                 <Address address="0xc689c800a7121b186208ea3b182fAb2671B337E7" />
                 {/*<Address address={log2?.args[0]} />*/}
               </div>
               <div className="flex flex-col text-center">
-                <p className="loving-snow m-1 text-2xl">Amount</p>
-                <p className="loving-snow m-1 text-4xl">{formatUnits(proof.transactions[i].amount, 18).toString()}</p>
+                <p className="loving-snow m-1 text-lg">Amount</p>
+                <p className="loving-snow m-1 text-md">{formatUnits(proof.transactions[i].amount, 18).toString()}</p>
               </div>
             </div>,
           );
         }
 
         return (
-          <div key={index} className="flex flex-col items-center bg-secondary rounded-lg p-10 space-y-1 m-10">
+          <div key={index} className="flex flex-col items-center bg-secondary rounded-3xl p-4 space-y-1 m-4">
             <p className="loving-snow text-4xl m-1">#{index}</p>
             {/* eslint-disable-next-line */}
-            <img src={proof.proof.src} className="w-32 h-32 lg:w-96 lg:h-96" />
+            <img src={proof.proof.src} className="w-32 h-32 lg:w-64 lg:h-64 rounded-lg" />
             {txComps}
             {/*<Link
               href={`https://basescan.org/tx/${proof.transactions}`}
@@ -127,15 +129,15 @@ const ProofOfReserve: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10 bg-gradient-to-t from-base-100 to-base-200">
-        <div className="flex items-center flex-col w-full">
-          <p className="text-center text-3xl lg:text-9xl beerGlass">Proof Of Reserve</p>
+        <p className="text-center text-3xl lg:text-9xl beerGlass">Proof Of Reserve</p>
+        <div className="flex items-start justify-center flex-wrap w-full">
+          {mintEventComponents}
           <div className="lg:w-1/4 bg-base-300 rounded-lg shadow-md m-4 p-4">
             <p className="text-3xl beerGlass text-center">How can you participate?</p>
             <p className="text-xl loving-snow text-center">
               {`You can send in your bottle cap tokens along with an associated address and when I receive the physical caps, then I will mint the tokens to your specified address!`}
             </p>
           </div>
-          {mintEventComponents}
         </div>
       </div>
     </>

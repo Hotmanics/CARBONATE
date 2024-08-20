@@ -152,7 +152,7 @@ const Home: NextPage = () => {
         { month: "May", "Tokens Minted: ": 0, "Transactions: ": 0 },
         { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
         { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
+        { month: "August", "Tokens Minted: ": total, "Transactions: ": 5 },
       ];
 
       setSelectedChartData(chartData12Month);
