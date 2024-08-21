@@ -160,8 +160,8 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200">
-        <div className="flex flex-col w-full px-5  justify-center items-center text-center rounded-lg">
+      <div className="flex flex-col flex-grow pt-10 space-y-8 bg-gradient-to-t from-base-100 to-base-200 items-center">
+        <div className="flex flex-col px-5 justify-center items-center text-center rounded-3xl bg-base-300">
           <p className="text-4xl lg:text-7xl beerGlass m-1">Wild Water</p>
           <p className="text-4xl lg:text-7xl beerGlass m-1">Bottle Cap Token</p>
           <p className="text-xl lg:text-2xl beerGlass m-1">A Tokenized Real World Asset</p>
