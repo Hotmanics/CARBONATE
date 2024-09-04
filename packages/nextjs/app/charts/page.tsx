@@ -10,7 +10,7 @@ import {
   XAxis,
 } from "recharts";
 import { formatUnits, parseAbiItem } from "viem";
-import { usePublicClient } from "wagmi";
+import { useAccount, usePublicClient } from "wagmi";
 import { getBlock } from "wagmi/actions";
 import {
   ChartConfig,
@@ -250,6 +250,17 @@ const Charts: NextPage = () => {
     setSelectedChartData2([...newChartData]);
   }
 
+  const { address: userAddress } = useAccount();
+
+  if (!userAddress) {
+    return (
+      <div className="m-4">
+        <div className="text-center text-4xl m-0">Connect wallet to view onchain data!</div>
+        <div className="text-center text-xl m-0">*You do NOT need to sign any transactions</div>
+      </div>
+    );
+    return;
+  }
   return (
     <>
       <div className="flex flex-wrap items-center justify-center">
