@@ -10,6 +10,7 @@ import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import proofOfReserve0 from "~~/public/proof-of-reserve-0.png";
 import proofOfReserve1 from "~~/public/proof-of-reserve-1.png";
 import proofOfReserve2 from "~~/public/proof-of-reserve-2.png";
+import proofOfReserve3 from "~~/public/proof-of-reserve-3.png";
 
 // const proofOfReserveArray = [proofOfReserve0];
 
@@ -32,6 +33,12 @@ const newProofOfReserveArray = [
     proof: proofOfReserve2,
     transactions: [
       { hash: "0xf8ce2aa384713287f53cbd193a63aa660cf4725ab28d88061a2ab333ea29fc7a", amount: "1000000000000000000" },
+    ],
+  },
+  {
+    proof: proofOfReserve3,
+    transactions: [
+      { hash: "0xf8ce2aa384713287f53cbd193a63aa660cf4725ab28d88061a2ab333ea29fc7a", amount: "18000000000000000000" },
     ],
   },
 ];
@@ -130,14 +137,12 @@ const ProofOfReserve: NextPage = () => {
     <>
       <div className="flex items-center flex-col flex-grow pt-10 bg-gradient-to-t from-base-100 to-base-200">
         <p className="text-center text-3xl lg:text-9xl beerGlass">Proof Of Reserve</p>
-        <div className="flex items-start justify-center flex-wrap w-full">
-          {mintEventComponents}
-          <div className="lg:w-1/4 bg-base-300 rounded-lg shadow-md m-4 p-4">
-            <p className="text-3xl beerGlass text-center">How can you participate?</p>
-            <p className="text-xl loving-snow text-center">
-              {`You can send in your bottle cap tokens along with an associated address and when I receive the physical caps, then I will mint the tokens to your specified address!`}
-            </p>
-          </div>
+        <div className="flex items-start justify-center flex-wrap w-full">{mintEventComponents}</div>
+        <div className="lg:w-1/4 bg-base-300 rounded-lg shadow-md m-4 p-4">
+          <p className="text-3xl beerGlass text-center">How can you participate?</p>
+          <p className="text-xl loving-snow text-center">
+            {`You can send in your bottle cap tokens along with an associated address and when I receive the physical caps, then I will mint the tokens to your specified address!`}
+          </p>
         </div>
       </div>
     </>
