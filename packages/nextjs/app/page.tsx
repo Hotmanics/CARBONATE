@@ -119,98 +119,10 @@ const Home: NextPage = () => {
     async function get() {
       const newChartData = [];
 
-      for (let i = 0; i < 3; i++) {
-        const observedDate = new Date();
-        const observedMonth = observedDate.getMonth() - i;
-
-        let newTotal = 0;
-        for (let j = 0; j < mintLogs.length; j++) {
-          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
-          const timestampConverted = block.timestamp * BigInt(1000);
-
-          const date = new Date(Number(timestampConverted));
-          const dateYear = date.getUTCFullYear();
-          const dateMonth = date.getUTCMonth();
-
-          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
-          if (result) {
-            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
-            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
-          }
-        }
-
-        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
-      }
-
-      setSelectedChartData(newChartData);
-    }
-    get();
-  }, [mintLogs]);
-
-  const [selectedChartData, setSelectedChartData] = useState<any>();
-
-  async function setChartData(numOfMonths: number) {
-    if (numOfMonths === 3) {
-      const newChartData = [];
-
-      for (let i = 0; i < 3; i++) {
-        const observedDate = new Date();
-        const observedMonth = observedDate.getMonth() - i;
-
-        let newTotal = 0;
-        for (let j = 0; j < mintLogs.length; j++) {
-          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
-          const timestampConverted = block.timestamp * BigInt(1000);
-
-          const date = new Date(Number(timestampConverted));
-          const dateYear = date.getUTCFullYear();
-          const dateMonth = date.getUTCMonth();
-
-          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
-          if (result) {
-            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
-            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
-          }
-        }
-
-        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
-      }
-
-      setSelectedChartData(newChartData);
-    } else if (numOfMonths === 6) {
-      const newChartData = [];
-
-      for (let i = 0; i < 6; i++) {
-        const observedDate = new Date();
-        const observedMonth = observedDate.getMonth() - i;
-
-        let newTotal = 0;
-        for (let j = 0; j < mintLogs.length; j++) {
-          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
-          const timestampConverted = block.timestamp * BigInt(1000);
-
-          const date = new Date(Number(timestampConverted));
-          const dateYear = date.getUTCFullYear();
-          const dateMonth = date.getUTCMonth();
-
-          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
-          if (result) {
-            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
-            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
-          }
-        }
-
-        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
-      }
-
-      setSelectedChartData(newChartData);
-    } else if (numOfMonths === 12) {
-      const newChartData = [];
-
       const observedDate = new Date();
       observedDate.setUTCDate(observedDate.getUTCDate());
 
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 3; i++) {
         const observedMonth = observedDate.getMonth();
         console.log(observedMonth);
 
@@ -236,6 +148,42 @@ const Home: NextPage = () => {
 
       setSelectedChartData([...newChartData]);
     }
+    get();
+  }, [mintLogs]);
+
+  const [selectedChartData, setSelectedChartData] = useState<any>();
+
+  async function setChartData(numOfMonths: number) {
+    const newChartData = [];
+
+    const observedDate = new Date();
+    observedDate.setUTCDate(observedDate.getUTCDate());
+
+    for (let i = 0; i < numOfMonths; i++) {
+      const observedMonth = observedDate.getMonth();
+      console.log(observedMonth);
+
+      let newTotal = 0;
+      for (let j = 0; j < mintLogs.length; j++) {
+        const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
+        const timestampConverted = block.timestamp * BigInt(1000);
+
+        const date = new Date(Number(timestampConverted));
+        const dateYear = date.getUTCFullYear();
+        const dateMonth = date.getUTCMonth();
+
+        const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
+        if (result) {
+          console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
+          newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
+        }
+      }
+
+      newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
+      observedDate.setUTCDate(observedDate.getUTCDate() - 30);
+    }
+
+    setSelectedChartData([...newChartData]);
   }
   return (
     <>
