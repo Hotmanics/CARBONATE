@@ -38,7 +38,7 @@ const newProofOfReserveArray = [
   {
     proof: proofOfReserve3,
     transactions: [
-      { hash: "0xf8ce2aa384713287f53cbd193a63aa660cf4725ab28d88061a2ab333ea29fc7a", amount: "18000000000000000000" },
+      { hash: "0x347326bf8b46ca6538c23ec3fbae012e929767bc75b516e9f4c8e6fdd8e189ee", amount: "18000000000000000000" },
     ],
   },
 ];
