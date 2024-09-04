@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { formatUnits, parseAbiItem } from "viem";
 import { usePublicClient } from "wagmi";
+import { getBlock } from "wagmi/actions";
 import { PfpCard } from "~~/components/PfpCard";
 import { Address } from "~~/components/scaffold-eth";
 import {
@@ -24,6 +25,7 @@ import {
 } from "~~/components/ui/chart";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import jake from "~~/public/jake.png";
+import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
 const chartConfig = {
   desktop: {
@@ -47,11 +49,45 @@ function BarChartExample({ chartData }: any) {
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
         <Bar dataKey="Tokens Minted: " fill="var(--color-desktop)" radius={4} />
-        <Bar dataKey="Transactions: " fill="var(--color-mobile)" radius={4} />
       </BarChart>
     </ChartContainer>
   );
 }
+
+// function BarChartExample2({ chartData }: any) {
+//   return (
+//     <ChartContainer config={chartConfig} className="h-[200px] w-auto">
+//       <BarChart accessibilityLayer data={chartData}>
+//         <CartesianGrid vertical={false} />
+//         <XAxis
+//           dataKey="month"
+//           tickLine={false}
+//           tickMargin={10}
+//           axisLine={false}
+//           tickFormatter={value => value.slice(0, 3)}
+//         />
+//         <ChartTooltip content={<ChartTooltipContent />} />
+//         <ChartLegend content={<ChartLegendContent />} />
+//         <Bar dataKey="Transactions: " fill="var(--color-mobile)" radius={4} />
+//       </BarChart>
+//     </ChartContainer>
+//   );
+// }
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const Home: NextPage = () => {
   const { data: contract } = useScaffoldContract({ contractName: "WildWaterBottleCapToken" });
@@ -80,20 +116,35 @@ const Home: NextPage = () => {
   }, [contract?.address, publicClient?.chain?.id]);
 
   useEffect(() => {
-    let total = 0;
+    async function get() {
+      const newChartData = [];
 
-    for (let i = 0; i < mintLogs.length; i++) {
-      total += Number(formatUnits(mintLogs[i]?.args[1], 18));
-      console.log(mintLogs[i]?.args[1]);
+      for (let i = 0; i < 3; i++) {
+        const observedDate = new Date();
+        const observedMonth = observedDate.getMonth() - i;
+
+        let newTotal = 0;
+        for (let j = 0; j < mintLogs.length; j++) {
+          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
+          const timestampConverted = block.timestamp * BigInt(1000);
+
+          const date = new Date(Number(timestampConverted));
+          const dateYear = date.getUTCFullYear();
+          const dateMonth = date.getUTCMonth();
+
+          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
+          if (result) {
+            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
+            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
+          }
+        }
+
+        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
+      }
+
+      setSelectedChartData(newChartData);
     }
-
-    const chartData3Month = [
-      { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
-      { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
-      { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
-    ];
-
-    setSelectedChartData(chartData3Month);
+    get();
   }, [mintLogs]);
 
   const [selectedChartData, setSelectedChartData] = useState<any>();
