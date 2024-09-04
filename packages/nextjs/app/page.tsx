@@ -149,64 +149,92 @@ const Home: NextPage = () => {
 
   const [selectedChartData, setSelectedChartData] = useState<any>();
 
-  async function setChartData(months: number) {
-    if (months === 3) {
-      let total = 0;
+  async function setChartData(numOfMonths: number) {
+    if (numOfMonths === 3) {
+      const newChartData = [];
 
-      for (let i = 0; i < mintLogs.length; i++) {
-        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
-        console.log(mintLogs[i]?.args[1]);
+      for (let i = 0; i < 3; i++) {
+        const observedDate = new Date();
+        const observedMonth = observedDate.getMonth() - i;
+
+        let newTotal = 0;
+        for (let j = 0; j < mintLogs.length; j++) {
+          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
+          const timestampConverted = block.timestamp * BigInt(1000);
+
+          const date = new Date(Number(timestampConverted));
+          const dateYear = date.getUTCFullYear();
+          const dateMonth = date.getUTCMonth();
+
+          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
+          if (result) {
+            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
+            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
+          }
+        }
+
+        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
       }
 
-      const chartData3Month = [
-        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
-      ];
+      setSelectedChartData(newChartData);
+    } else if (numOfMonths === 6) {
+      const newChartData = [];
 
-      setSelectedChartData(chartData3Month);
-    } else if (months === 6) {
-      let total = 0;
+      for (let i = 0; i < 6; i++) {
+        const observedDate = new Date();
+        const observedMonth = observedDate.getMonth() - i;
 
-      for (let i = 0; i < mintLogs.length; i++) {
-        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
-        console.log(mintLogs[i]?.args[1]);
+        let newTotal = 0;
+        for (let j = 0; j < mintLogs.length; j++) {
+          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
+          const timestampConverted = block.timestamp * BigInt(1000);
+
+          const date = new Date(Number(timestampConverted));
+          const dateYear = date.getUTCFullYear();
+          const dateMonth = date.getUTCMonth();
+
+          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
+          if (result) {
+            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
+            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
+          }
+        }
+
+        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
       }
 
-      const chartData6Month = [
-        { month: "March", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "April", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "May", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "August", "Tokens Minted: ": total, "Transactions: ": 4 },
-      ];
+      setSelectedChartData(newChartData);
+    } else if (numOfMonths === 12) {
+      const newChartData = [];
 
-      setSelectedChartData(chartData6Month);
-    } else if (months === 12) {
-      let total = 0;
+      const observedDate = new Date();
+      observedDate.setUTCDate(observedDate.getUTCDate());
 
-      for (let i = 0; i < mintLogs.length; i++) {
-        total += Number(formatUnits(mintLogs[i]?.args[1], 18));
-        console.log(mintLogs[i]?.args[1]);
+      for (let i = 0; i < 12; i++) {
+        const observedMonth = observedDate.getMonth();
+        console.log(observedMonth);
+
+        let newTotal = 0;
+        for (let j = 0; j < mintLogs.length; j++) {
+          const block = await getBlock(wagmiConfig, { blockHash: mintLogs[j].blockHash });
+          const timestampConverted = block.timestamp * BigInt(1000);
+
+          const date = new Date(Number(timestampConverted));
+          const dateYear = date.getUTCFullYear();
+          const dateMonth = date.getUTCMonth();
+
+          const result = dateYear === observedDate.getUTCFullYear() && dateMonth === observedMonth;
+          if (result) {
+            console.log("Added " + Number(formatUnits(mintLogs[j]?.args[1], 18)) + " to " + observedMonth);
+            newTotal += Number(formatUnits(mintLogs[j]?.args[1], 18));
+          }
+        }
+
+        newChartData.unshift({ month: months[observedMonth], "Tokens Minted: ": newTotal });
+        observedDate.setUTCDate(observedDate.getUTCDate() - 30);
       }
 
-      const chartData12Month = [
-        { month: "September", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "October", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "November", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "December", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "January", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "February", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "March", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "April", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "May", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "June", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "July", "Tokens Minted: ": 0, "Transactions: ": 0 },
-        { month: "August", "Tokens Minted: ": total, "Transactions: ": 5 },
-      ];
-
-      setSelectedChartData(chartData12Month);
+      setSelectedChartData([...newChartData]);
     }
   }
   return (
